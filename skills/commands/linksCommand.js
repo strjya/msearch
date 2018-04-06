@@ -1,7 +1,8 @@
 module.exports = (bot, message) => {
+    bot.replyPrivate(message, "Solo un momento...")
     var auth = getAuth(userID);
     var response = createMessage(auth.auth, auth.key);
-    bot.replyPrivate(message,response)
+    bot.replyPrivateDelayed(message,response)
 
     function getAuth(userID) {
       let result = bot.api.users.info({user: message.user})
