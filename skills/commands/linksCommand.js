@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 
 module.exports = (bot, message) => {
-    bot.replyPrivateDelayed(message, "e due")
     var connection = mysql.createConnection({
                   user: 'root',
                   password: 'ThisIsSAAMComo!',
@@ -10,7 +9,8 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
-      connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function (error, results, fields) {
+      connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function(error, results, fields) {
+        bot.replyPrivateDelayed(message, "e due")
         if (error)     bot.replyPrivateDelayed(message, "errore"+error)
         if (results[0]!= null) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
@@ -22,6 +22,7 @@ module.exports = (bot, message) => {
 
         }
         else auth = false;
+        bot.replyPrivateDelayed(message, "baaaaaad")
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,response)
       })
