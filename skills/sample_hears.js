@@ -57,24 +57,25 @@ module.exports = function(controller) {
                           "attachments": [
                             {
                               "title": "IBAN",
-                              "text": "IT54Y0569651290000008398X43"
+                              "text": "IT54Y0569651290000008398X43",
                               "color" : "#000000"
                             },
                             {
                               "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_"
+                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
                               "color" : "#990000"
                             }
                           ]
                         }
         bot.reply(message, response)
+    });
 
     controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti' ], 'direct_message,direct_mention', function(bot, message) {
         let response = {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
                             {
-                              "color" : "#000000"
+                              "color" : "#000000",
                               "actions": [
                                 {
                                   "type": "button",
@@ -96,6 +97,7 @@ module.exports = function(controller) {
                           ]
                         }
         bot.reply(message, response)
+    });
 
     controller.hears(['nada'], 'direct_message,direct_mention', function(bot, message) {
         let response = {
@@ -103,30 +105,30 @@ module.exports = function(controller) {
                           "attachments": [
                             {
                               "title": "IBAN",
-                              "text": "IT54Y0569651290000008398X43"
+                              "text": "IT54Y0569651290000008398X43",
                               "color" : "#000000"
                             },
                             {
                               "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_"
+                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
                               "color" : "#990000"
                             }
                           ]
                         }
         bot.reply(message, response)
-
+  });
     controller.hears(['noh'], 'direct_message,direct_mention', function(bot, message) {
         let response = {
                           "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
                           "attachments": [
                             {
                               "title": "IBAN",
-                              "text": "IT54Y0569651290000008398X43"
+                              "text": "IT54Y0569651290000008398X43",
                               "color" : "#000000"
                             },
                             {
                               "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_"
+                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
                               "color" : "#990000"
                             }
                           ]
