@@ -1,4 +1,4 @@
-var links = require('commands/linksCommand');
+var links = require('./commands/linksCommand.js');
 
 module.exports = function(controller) {
   controller.on('slash_command',function(bot,message) {
