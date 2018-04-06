@@ -43,7 +43,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['^ciao(.*)','^buongiorn(.*)','^buon giorn(.*)','^buonaser(.*)','^buona ser(.*)','^ave (.*)', '^ave', '^ave!'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^ciao(.*)','^buongiorn(.*)','^buon giorn(.*)','^buonaser(.*)','^buona ser(.*)','^ave (.*)', '^ave', '^ave!'], 'direct_message,direct_mention,mention', function(bot, message) {
         let hours = new Date().getHours()
         if (hours < 3 || hours > 18)
           bot.reply(message,"Buonasera, <@"+message.user+">" )
@@ -51,7 +51,7 @@ module.exports = function(controller) {
           bot.reply(message,"Buongiorno, <@"+message.user+">" )
     });
 
-    controller.hears(['banca','bancari.','coordinate', 'iban', 'pagar', 'pagament' ], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['banca','bancari.','coordinate', 'iban', 'pagar', 'pagament' ], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
                           "attachments": [
@@ -70,7 +70,7 @@ module.exports = function(controller) {
         bot.reply(message, response)
     });
 
-    controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti' ], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti' ], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
@@ -100,7 +100,7 @@ module.exports = function(controller) {
         bot.reply(message, response)
     });
 
-    controller.hears(['verbal.', 'statuto', 'regolament.'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['verbal.', 'statuto', 'regolament.'], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Ecco i documenti della Sword Academy. Il vostro interesse nell'associazione è encomiabile!",
                           "attachments": [
@@ -128,7 +128,7 @@ module.exports = function(controller) {
                       ]}
         bot.reply(message, response)
   });
-    controller.hears(['foto', 'album'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['foto', 'album'], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Qui trovate tutte le foto di sala. Ah, quanti bei ricordi!",
                           "attachments": [
@@ -146,7 +146,7 @@ module.exports = function(controller) {
         bot.reply(message, response)
     });
 
-    controller.hears(['calendario', 'eventi'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['calendario', 'eventi'], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Da qui potete accedere al calendario dell'Accademia. Non dimenticate che potete trovare informazioni sugli eventi su #eventi.",
                           "attachments": [
