@@ -24,14 +24,12 @@ module.exports = (bot, message) => {
       // connect to your database
       connection.connect()
       bot.replyPrivateDelayed(message, "connesso")
-      let results = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
-      let result = result.rows[0]
+      let {error, results, fields} = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
+      let result = results
       bot.replyPrivateDelayed(message, {"text": JSON.stringify( result)})
 
       if (result!= null) {
-        var status = result[0];
-        var course = result[2];
-        if (status !== 'Fallen' && status !== 'Rifiutato' && course === 'Adulti') {
+        if (result.status !== 'Fallen' && result.status !== 'Rifiutato' && result.course === 'Adulti') {
           auth = status;
           key = generateKey();
           connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
