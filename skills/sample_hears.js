@@ -56,6 +56,10 @@ module.exports = function(controller) {
         }
     });
 
+    controller.hears(['prova (.*)','prova'], 'direct_message,direct_mention', function(bot, message) {
+        bot.reply(message, "congratualazioni Signore, sono operativo!")
+    });
+
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
