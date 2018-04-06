@@ -9,10 +9,9 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
-      connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function(error, results, fields) {
-        bot.replyPrivateDelayed(message, "e due")
-        if (error)     bot.replyPrivateDelayed(message, "errore"+error)
-        if (results[0]!= null) {
+      connection.query('SELECT * FROM people', function(error, results, fields) {
+        bot.replyPrivateDelayed(message, "yeah")
+        if (results.length > 0) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             auth = status;
             key = generateKey();
@@ -22,7 +21,6 @@ module.exports = (bot, message) => {
 
         }
         else auth = false;
-        bot.replyPrivateDelayed(message, "baaaaaad")
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,response)
       })
@@ -32,8 +30,6 @@ module.exports = (bot, message) => {
       switch (auth) {
         case 'Base':
           var message = {
-            link_names: true,
-            response_type: 'ephemeral',
             attachments: [
               {
                 title: 'Mail',
@@ -54,8 +50,6 @@ module.exports = (bot, message) => {
           break
           case 'Avanzato':
           var message = {
-            link_names: true,
-            response_type: 'ephemeral',
             attachments: [
               {
                 title: 'Mail',
@@ -96,8 +90,6 @@ module.exports = (bot, message) => {
           break
           default:
           var message = {
-            link_names: true,
-            response_type: 'ephemeral',
             attachments: [
               {
                 title: 'Rchiesta negata',
