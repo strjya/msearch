@@ -1,10 +1,10 @@
 {
-  "name": "botkit-starter-slack",
-  "version": "0.0.2",
-  "description": "A starter kit for building a custom Slack bot with Botkit Studio",
-  "main": "bot.js",
+  "name": "SA-node",
+  "version": "0.0.1",
+  "description": "node platform for Sword Academy code",
+  "main": "node-launcher.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node node-launcher.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
