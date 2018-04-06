@@ -43,17 +43,12 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
-        if (message.match[1]) {
-
-            if (!wordfilter.blacklisted(message.match[1])) {
-                bot.reply(message, message.match[1]);
-            } else {
-                bot.reply(message, '_sigh_');
-            }
-        } else {
-            bot.reply(message, 'I will repeat whatever you say.')
-        }
+    controller.hears(['^(Ciao|ciao|(B|b)uongiorno|(B|b)uon giorno|(B|b)uonasera|(B|b)uonasera|(A|a)ve) (.*)'], 'direct_message,direct_mention', function(bot, message) {
+        let hours = new Date().getHours()
+        if (hours < 3 || hours > 18)
+          bot.reply(message,"Buonasera, Signore" )
+        else
+          bot.reply(message,"Buongiorno, Signore" )
     });
 
     controller.hears(['prova (.*)','prova'], 'direct_message,direct_mention', function(bot, message) {
