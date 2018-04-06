@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 
 module.exports = (bot, message) => {
-    bot.replyPrivate(message, "Solo un momento...")
     bot.replyPrivateDelayed(message, "e due")
     var connection = mysql.createConnection({
                   user: 'root',
@@ -11,8 +10,8 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
-      bot.replyPrivateDelayed(message, "connesso")
       connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function (error, results, fields) {
+        if (error)     bot.replyPrivateDelayed(message, "errore"+error)
         if (results[0]!= null) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             auth = status;
