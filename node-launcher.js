@@ -66,7 +66,6 @@ var debug = require('debug')('botkit:main');
 var bot_options = {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
-    // debug: true,
     scopes: ['bot']
 };
 
@@ -87,6 +86,7 @@ controller.startTicking();
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
 var webserver = require(__dirname + '/components/express_webserver.js')(controller);
 
+
   webserver.get('/', function(req, res){
     res.render('index', {
       domain: req.get('host'),
@@ -102,15 +102,11 @@ var webserver = require(__dirname + '/components/express_webserver.js')(controll
   // Send an onboarding message when a new team joins
   require(__dirname + '/components/onboarding.js')(controller);
 
+
   var normalizedPath = require("path").join(__dirname, "skills");
   require("fs").readdirSync(normalizedPath).forEach(function(file) {
     require("./skills/" + file)(controller);
   });
-
-}
-
-
-
 
 
 function usage_tip() {
