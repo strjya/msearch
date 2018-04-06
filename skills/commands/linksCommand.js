@@ -3,15 +3,13 @@ var mysql = require('mysql');
 module.exports = (bot, message) => {
     bot.replyPrivate(message, "Solo un momento...")
     try {
-    var auth = getAuth(message.user);
-    var response = createMessage(auth.auth, auth.key);
-    bot.replyPrivateDelayed(message,response)
+    answer(message.user);
 
   } catch (error) {
     bot.replyPrivateDelayed(message, {"text": error.message})
   }
 
-    function getAuth(userID) {
+    function answer(userID) {
       bot.replyPrivateDelayed(message,"dentro auth")
 
       var key = 0;
@@ -24,21 +22,22 @@ module.exports = (bot, message) => {
       // connect to your database
       connection.connect()
       bot.replyPrivateDelayed(message, "connesso")
-      let {error, results, fields} = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
-      let result = results
-      bot.replyPrivateDelayed(message, {"text": JSON.stringify( result)})
+      connection.query('SELECT status, course FROM people WHERE slackid = '+userID, function (error, results, fields) {
+        bot.replyPrivateDelayed(message, {"text": JSON.stringify( result)})
+        if (results[0]!= null) {
+          if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
+            auth = status;
+            key = generateKey();
+            connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
+          } else
+            auth = false;
 
-      if (result!= null) {
-        if (result.status !== 'Fallen' && result.status !== 'Rifiutato' && result.course === 'Adulti') {
-          auth = status;
-          key = generateKey();
-          connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
-        } else
-          auth = false;
-        connection.end()
-      }
-      else auth = false;
-      return {auth: auth, key: key};
+        }
+        else auth = false;
+        var response = createMessage(auth, key);
+        bot.replyPrivateDelayed(message,response)
+      })
+      connection.end()
     }
 
     function createMessage(auth, key) {
