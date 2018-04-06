@@ -5,7 +5,7 @@ module.exports = function(controller) {
       switch (message.command) {
         case '/prova':
           bot.replyPrivate(message, "at least this works")
-          bot.replyPrivate(message, "at least this works2")
+          bot.replyPrivateDelayed(message, "at least this works2")
           links(bot, message)
           bot.replyPrivate(message, "at least this works3")
           break
