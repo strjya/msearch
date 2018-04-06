@@ -1,12 +1,10 @@
 module.exports = (bot, message) => {
     var auth = getAuth(userID);
     var response = createMessage(auth.auth, auth.key);
-    bot.replyPrivateDelayed(message,response)
+    bot.replyPrivate(message,response)
 
     function getAuth(userID) {
-      var params = {method: 'post', headers: {'Content-Type': 'application/x-www-form-urlencoded','Authorization': 'Bearer xoxp-67034961828-67049441729-329049588465-447fe0eb552a8a5c01b9602ed31a8217'}};
-      var result = UrlFetchApp.fetch('https://slack.com/api/users.profile.get?user='+userID, params);
-      result = JSON.parse(result);
+      let result = bot.api.users.info({user: message.user})
       var realName = result.profile.first_name;
       var realSurname = result.profile.last_name;
       var key = 0;
