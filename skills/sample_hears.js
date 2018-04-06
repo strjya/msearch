@@ -62,7 +62,7 @@ module.exports = function(controller) {
                             },
                             {
                               "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
+                              "text": "Contributo per attività <@"+message.user+"> mesi di _____",
                               "color" : "#990000"
                             }
                           ]
