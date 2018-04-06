@@ -9,22 +9,18 @@ module.exports = (bot, message) => {
     bot.replyPrivateDelayed(message,response)
 
     function getAuth(userID) {
-      let result = bot.api.users.info({user: userID})
-      bot.replyPrivateDelayed(message, {"text": result})
-      var realName = result.profile.first_name;
-      var realSurname = result.profile.last_name;
       var key = 0;
 
       var connection = Jdbc.getConnection("jdbc:mysql://sword.academy:3306/Sql1001475_3", "root", "ThisIsSAAMComo!");
       var SQLstatement = connection.createStatement();
-      result = SQLstatement.executeQuery("SELECT status, course FROM people WHERE realname LIKE '"+realName+"' AND realsurname LIKE '"+realSurname+"' ");
+      result = SQLstatement.executeQuery("SELECT status, course FROM people WHERE slackid = "+userID);
       if (result.next()) {
         var status = result.getString(1);
         var course = result.getString(2);
         if (status !== 'Fallen' && status !== 'Rifiutato' && course === 'Adulti') {
           auth = status;
           key = generateKey();
-          SQLstatement.executeUpdate("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE realname='"+realName+"' AND realsurname = '"+realSurname+"'");
+          SQLstatement.executeUpdate("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
         } else
           auth = false;
         SQLstatement.close();
