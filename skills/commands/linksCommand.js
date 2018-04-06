@@ -2,17 +2,7 @@ var mysql = require('mysql');
 
 module.exports = (bot, message) => {
     bot.replyPrivate(message, "Solo un momento...")
-    try {
-    answer(message.user);
-
-  } catch (error) {
-    bot.replyPrivateDelayed(message, {"text": error.message})
-  }
-
-    function answer(userID) {
-      bot.replyPrivateDelayed(message,"dentro auth")
-
-      var key = 0;
+    bot.replyPrivateDelayed(message, "e due")
       var connection = mysql.createConnection({
                     user: 'root',
                     password: 'ThisIsSAAMComo!',
@@ -22,13 +12,12 @@ module.exports = (bot, message) => {
       // connect to your database
       connection.connect()
       bot.replyPrivateDelayed(message, "connesso")
-      connection.query('SELECT status, course FROM people WHERE slackid = '+userID, function (error, results, fields) {
-        bot.replyPrivateDelayed(message, {"text": JSON.stringify( result)})
+      connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function (error, results, fields) {
         if (results[0]!= null) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             auth = status;
             key = generateKey();
-            connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
+            connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+message.user);
           } else
             auth = false;
 
@@ -38,7 +27,6 @@ module.exports = (bot, message) => {
         bot.replyPrivateDelayed(message,response)
       })
       connection.end()
-    }
 
     function createMessage(auth, key) {
       switch (auth) {
