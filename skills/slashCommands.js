@@ -4,7 +4,6 @@ module.exports = function(controller) {
   controller.on('slash_command',function(bot,message) {
       switch (message.command) {
         case '/prova':
-          //bot.replyPrivate(message, "at least this works")
           links(bot, message)
           bot.replyPrivateDelayed(message, "at least this works2")
           break
