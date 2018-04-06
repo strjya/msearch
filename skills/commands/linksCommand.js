@@ -1,7 +1,7 @@
 module.exports = (bot, message) => {
     var auth = getAuth(userID);
     var response = createMessage(auth.auth, auth.key);
-    bot.replyPrivate(message,response)
+    bot.replyPrivateDelayed(message,response)
 
     function getAuth(userID) {
       var params = {method: 'post', headers: {'Content-Type': 'application/x-www-form-urlencoded','Authorization': 'Bearer xoxp-67034961828-67049441729-329049588465-447fe0eb552a8a5c01b9602ed31a8217'}};
