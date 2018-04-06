@@ -1,7 +1,7 @@
 module.exports = (bot, message) => {
     bot.replyPrivate(message, "Solo un momento...")
     try {
-    var auth = getAuth(userID);
+    var auth = getAuth(message.user);
     var response = createMessage(auth.auth, auth.key);
   } catch (error) {
     bot.replyPrivateDelayed(message, {"text": error.message})
