@@ -10,8 +10,18 @@ module.exports = (bot, message) => {
 
     function getAuth(userID) {
       var key = 0;
+      var config = {
+                    user: 'root',
+                    password: 'ThisIsSAAMComo!',
+                    server: 'sword.academy',
+                    database: 'Sql1001475_3'
+                    }
+    // connect to your database
+    let boh = sql.connect(config)
+    var request = new sql.Request();
+    // query to the database and get the records
+    let result = request.query('SELECT status, course FROM people WHERE slackid = "+userID')
 
-      var connection = Jdbc.getConnection("jdbc:mysql://sword.academy:3306/Sql1001475_3", "root", "ThisIsSAAMComo!");
       var SQLstatement = connection.createStatement();
       result = SQLstatement.executeQuery("SELECT status, course FROM people WHERE slackid = "+userID);
       if (result.next()) {
