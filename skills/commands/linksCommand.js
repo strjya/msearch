@@ -6,7 +6,7 @@ module.exports = (bot, message) => {
     var connection = mysql.createConnection({
                   user: 'root',
                   password: 'ThisIsSAAMComo!',
-                  server: 'sword.academy',
+                  host: 'sword.academy',
                   database: 'Sql1001475_3'
                 })
       // connect to your database
