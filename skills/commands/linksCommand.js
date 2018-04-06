@@ -1,27 +1,33 @@
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
 module.exports = (bot, message) => {
     bot.replyPrivate(message, "Solo un momento...")
     try {
     var auth = getAuth(message.user);
     var response = createMessage(auth.auth, auth.key);
+    bot.replyPrivateDelayed(message,response)
+
   } catch (error) {
     bot.replyPrivateDelayed(message, {"text": error.message})
   }
-    bot.replyPrivateDelayed(message,response)
 
     function getAuth(userID) {
+      bot.replyPrivateDelayed(message,"dentro auth")
+
       var key = 0;
-var connection = mysql.createConnection({
+      var connection = mysql.createConnection({
                     user: 'root',
                     password: 'ThisIsSAAMComo!',
                     server: 'sword.academy',
                     database: 'Sql1001475_3'
                   })
-    // connect to your database
-    connection.connect()
-    let results = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
-    let result = result.rows[0]
+      // connect to your database
+      connection.connect()
+      bot.replyPrivateDelayed(message, "connesso")
+      let results = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
+      let result = result.rows[0]
+      bot.replyPrivateDelayed(message, {"text": JSON.stringify( result)})
+
       if (result!= null) {
         var status = result[0];
         var course = result[2];

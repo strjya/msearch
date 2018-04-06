@@ -8,8 +8,9 @@ In these examples, Botkit is configured to listen for certain phrases, and then
 respond immediately with a single line response.
 
 */
+var mysql = require('mysql');
+var wordfilter = require('wordfilter')
 
-var wordfilter = require('wordfilter');
 module.exports = function(controller) {
     controller.hears(['certificat.'], 'direct_message,direct_mention', function(bot, message) {
       let attachments = getData(userID);
