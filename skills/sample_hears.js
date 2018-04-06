@@ -75,7 +75,7 @@ module.exports = function(controller) {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -105,7 +105,7 @@ module.exports = function(controller) {
                           "text": "Ecco i documenti della Sword Academy. Il vostro interesse nell'associazione è encomiabile!",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -125,6 +125,7 @@ module.exports = function(controller) {
                                 }
                               ]
                         }
+                      ]}
         bot.reply(message, response)
   });
     controller.hears(['foto', 'album'], 'direct_message,direct_mention', function(bot, message) {
@@ -132,7 +133,7 @@ module.exports = function(controller) {
                           "text": "Qui trovate tutte le foto di sala. Ah, quanti bei ricordi!",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -141,7 +142,26 @@ module.exports = function(controller) {
                                   "url": "https://photos.google.com/share/AF1QipMDdkJ2tDR3_5ZydEcxWnrPZDjbtiMVsN9HMyma7Nm7LWHvq9SmqjF6MVYeQvg3FA?key=bVdqZ2lvQmZYa3VoZlV5OUlqVDl3djY1LWVwMW5n"
                                 }
                               ]
-                        }
+                        } ] }
+        bot.reply(message, response)
+    });
+
+    controller.hears(['calendario', 'eventi'], 'direct_message,direct_mention', function(bot, message) {
+        let response = {
+                          "text": "Da qui potete accedere al calendario dell'Accademia. Non dimenticate che potete trovare informazioni sugli eventi su #eventi.",
+                          "attachments": [
+                            {
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
+                              "color" : "#000000",
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "text": "Calendario",
+                                  "url": "https://calendar.sword.academy"
+                                }
+                              ]
+                        } ]
+                      }
         bot.reply(message, response)
     });
 
