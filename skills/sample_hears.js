@@ -43,7 +43,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['^ciao (.*)','^buongiorno (.*)','^buon giorno (.*)','^buonasera (.*)','^buona sera (.*)','^ave (.*)',], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^ciao(.*)','^buongiorn(.*)','^buon giorn(.*)','^buonaser(.*)','^buona ser(.*)','^ave (.*)', '^ave', '^ave!'], 'direct_message,direct_mention', function(bot, message) {
         let hours = new Date().getHours()
         if (hours < 3 || hours > 18)
           bot.reply(message,"Buonasera, Signore" )
@@ -53,7 +53,71 @@ module.exports = function(controller) {
 
     controller.hears(['banca','bancari.','coordinate', 'iban', 'pagar', 'pagament' ], 'direct_message,direct_mention', function(bot, message) {
         let response = {
-                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",            
+                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
+                          "attachments": [
+                            {
+                              "title": "IBAN",
+                              "text": "IT54Y0569651290000008398X43"
+                              "color" : "#000000"
+                            },
+                            {
+                              "title": "Causale",
+                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_"
+                              "color" : "#990000"
+                            }
+                          ]
+                        }
+        bot.reply(message, response)
+
+    controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti' ], 'direct_message,direct_mention', function(bot, message) {
+        let response = {
+                          "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
+                          "attachments": [
+                            {
+                              "color" : "#000000"
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "text": "Drive primo anno",
+                                  "url": "https://drive.google.com/drive/folders/0B_Htmk-DaHJ2cDdCTkhubUZyNkk?usp=sharing"
+                                },
+                                {
+                                  "type": "button",
+                                  "text": "Drive corsi",
+                                  "url": "https://drive.google.com/drive/folders/0B_Htmk-DaHJ2bXZjekpkQUh1NXM?usp=sharing"
+                                },
+                                {
+                                  "type": "button",
+                                  "text": "Drive",
+                                  "url": "https://drive.sword.academy"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+        bot.reply(message, response)
+
+    controller.hears(['nada'], 'direct_message,direct_mention', function(bot, message) {
+        let response = {
+                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
+                          "attachments": [
+                            {
+                              "title": "IBAN",
+                              "text": "IT54Y0569651290000008398X43"
+                              "color" : "#000000"
+                            },
+                            {
+                              "title": "Causale",
+                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_"
+                              "color" : "#990000"
+                            }
+                          ]
+                        }
+        bot.reply(message, response)
+
+    controller.hears(['noh'], 'direct_message,direct_mention', function(bot, message) {
+        let response = {
+                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
                           "attachments": [
                             {
                               "title": "IBAN",
