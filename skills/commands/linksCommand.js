@@ -1,3 +1,5 @@
+var mysql      = require('mysql');
+
 module.exports = (bot, message) => {
     bot.replyPrivate(message, "Solo un momento...")
     try {
@@ -10,31 +12,26 @@ module.exports = (bot, message) => {
 
     function getAuth(userID) {
       var key = 0;
-      var config = {
+var connection = mysql.createConnection({
                     user: 'root',
                     password: 'ThisIsSAAMComo!',
                     server: 'sword.academy',
                     database: 'Sql1001475_3'
-                    }
+                  })
     // connect to your database
-    let boh = sql.connect(config)
-    var request = new sql.Request();
-    // query to the database and get the records
-    let result = request.query('SELECT status, course FROM people WHERE slackid = "+userID')
-
-      var SQLstatement = connection.createStatement();
-      result = SQLstatement.executeQuery("SELECT status, course FROM people WHERE slackid = "+userID);
-      if (result.next()) {
-        var status = result.getString(1);
-        var course = result.getString(2);
+    connection.connect()
+    let results = connection.query('SELECT status, course FROM people WHERE slackid = '+userID)
+    let result = result.rows[0]
+      if (result!= null) {
+        var status = result[0];
+        var course = result[2];
         if (status !== 'Fallen' && status !== 'Rifiutato' && course === 'Adulti') {
           auth = status;
           key = generateKey();
-          SQLstatement.executeUpdate("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
+          connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+userID);
         } else
           auth = false;
-        SQLstatement.close();
-        connection.close();
+        connection.end()
       }
       else auth = false;
       return {auth: auth, key: key};
