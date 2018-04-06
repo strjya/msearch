@@ -10,6 +10,7 @@ module.exports = (bot, message) => {
 
     function getAuth(userID) {
       let result = bot.api.users.info({user: userID})
+      bot.replyPrivateDelayed(message, {"text": result})
       var realName = result.profile.first_name;
       var realSurname = result.profile.last_name;
       var key = 0;
