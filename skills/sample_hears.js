@@ -75,6 +75,7 @@ module.exports = function(controller) {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
                             {
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -99,39 +100,47 @@ module.exports = function(controller) {
         bot.reply(message, response)
     });
 
-    controller.hears(['nada'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['verbal.', 'statuto', 'regolament.'], 'direct_message,direct_mention', function(bot, message) {
         let response = {
-                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
+                          "text": "Ecco i documenti della Sword Academy. Il vostro interesse nell'associazione è encomiabile!",
                           "attachments": [
                             {
-                              "title": "IBAN",
-                              "text": "IT54Y0569651290000008398X43",
-                              "color" : "#000000"
-                            },
-                            {
-                              "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
-                              "color" : "#990000"
-                            }
-                          ]
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
+                              "color" : "#000000",
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "text": "Regolamenti",
+                                  "url": "https://drive.google.com/drive/folders/1yz3kOkPFaOXe6G0PjYI5hqY72mJ2yiHt?usp=sharing"
+                                },
+                                {
+                                  "type": "button",
+                                  "text": "Verbali",
+                                  "url": "https://drive.google.com/drive/folders/1L8Lk8gopn-IFRoeBo1nYijxYfEJphnGF?usp=sharing"
+                                },
+                                {
+                                  "type": "button",
+                                  "text": "Statuto",
+                                  "url": "https://drive.google.com/file/d/0B_Htmk-DaHJ2VFM0V1B0QzJvOFE/view"
+                                }
+                              ]
                         }
         bot.reply(message, response)
   });
-    controller.hears(['noh'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['foto', 'album'], 'direct_message,direct_mention', function(bot, message) {
         let response = {
-                          "text": "Ecco le informazioni relative al pagamento. Mi raccomando di seguire l'esempio di causale che vi ho allegato!",
+                          "text": "Qui trovate tutte le foto di sala. Ah, quanti bei ricordi!",
                           "attachments": [
                             {
-                              "title": "IBAN",
-                              "text": "IT54Y0569651290000008398X43",
-                              "color" : "#000000"
-                            },
-                            {
-                              "title": "Causale",
-                              "text": "Contributo per attività _nome cognome_ mesi di _mesi_",
-                              "color" : "#990000"
-                            }
-                          ]
+                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto."
+                              "color" : "#000000",
+                              "actions": [
+                                {
+                                  "type": "button",
+                                  "text": "Foto",
+                                  "url": "https://photos.google.com/share/AF1QipMDdkJ2tDR3_5ZydEcxWnrPZDjbtiMVsN9HMyma7Nm7LWHvq9SmqjF6MVYeQvg3FA?key=bVdqZ2lvQmZYa3VoZlV5OUlqVDl3djY1LWVwMW5n"
+                                }
+                              ]
                         }
         bot.reply(message, response)
     });
