@@ -1,4 +1,4 @@
-var links = ('commands/linksCommand');
+var links = ('commands/linksCommand.js');
 
 module.exports = function(controller) {
   controller.on('slash_command',function(bot,message) {
