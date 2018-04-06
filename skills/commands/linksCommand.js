@@ -4,7 +4,7 @@ module.exports = (bot, message) => {
     var auth = getAuth(userID);
     var response = createMessage(auth.auth, auth.key);
   } catch (error) {
-    bot.replyPrivateDelayed(message, {"text": JSON.stringify( error)})
+    bot.replyPrivateDelayed(message, {"text": error})
   }
     bot.replyPrivateDelayed(message,response)
 
