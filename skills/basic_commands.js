@@ -70,7 +70,7 @@ module.exports = function(controller) {
         bot.reply(message, response)
     });
 
-    controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti' ], 'direct_message,direct_mention,mention', function(bot, message) {
+    controller.hears(['drive','google drive','cartella', 'cartelle', 'dispense', 'appunti', 'document.' ], 'direct_message,direct_mention,mention', function(bot, message) {
         let response = {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
