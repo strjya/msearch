@@ -59,9 +59,9 @@ module.exports = function(controller) {
             attachments = [{title: "Scaduti: "+koCounter, color: '#990000', text: expired},
                             {title: "Scadono entro un mese: "+sosoCounter, color: '#FFFF00', text: expiring},
                             {title: "Validi: "+okCounter, color: '#00FF00'},
-                            {color: '#000000', text: 'PS: il tuo certificato scade il '+your}];
+                            {color: '#000000', text: 'PS: il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}];
           else
-            attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your}]
+            attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
           let response = createMessage(attachments);
           bot.reply(message, response)
         })
