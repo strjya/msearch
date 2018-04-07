@@ -6,9 +6,7 @@ module.exports = (bot, message) => {
                   password: 'ThisIsSAAMComo!',
                   host: 'sword.academy',
                   database: 'Sql1001475_3'
-                })
-      // connect to your database
-      connection.connect()
+                }).connect()
       bot.replyPrivateDelayed(message, "connesso")
       try {
       var r = connection.query('SELECT status, course FROM people WHERE slackid = '+message.user)
@@ -29,7 +27,6 @@ module.exports = (bot, message) => {
       bot.replyPrivateDelayed(message, "pronto per messaggio")
       var response = createMessage(auth, key);
       bot.replyPrivateDelayed(message,response)*/
-      connection.end()
 
     function createMessage(auth, key) {
       switch (auth) {
