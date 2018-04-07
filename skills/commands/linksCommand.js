@@ -14,17 +14,21 @@ module.exports = (bot, message) => {
         bot.replyPrivateDelayed(message,"vjvjfj")
         results = res
       })
-      bot.replyPrivateDelayed(message,"aaa")
       if (results.length > 0) {
+        bot.replyPrivateDelayed(message,"aaa")
         if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
+          bot.replyPrivateDelayed(message,"bbb")
           auth = results[0].status
-          key = generateKey();
-          //connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+message.user);
+          key = 'aaa'
+          connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+message.user);
+          bot.replyPrivateDelayed(message,"ccc")
         } else
           auth = false;
       }
       else auth = false;
+      bot.replyPrivateDelayed(message,"ddd")
       var response = createMessage(auth, key);
+      bot.replyPrivateDelayed(message,"eee")
       bot.replyPrivateDelayed(message,response)
 
       connection.end();
