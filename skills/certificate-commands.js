@@ -36,7 +36,7 @@ module.exports = function(controller) {
           var nowOneMonth = now.setMonth(now.getMonth()+1);
           now = new Date();
 
-          if (status !== 'Fallen') {
+          if (results[k].status !== 'Fallen') {
             if (expiration_date.getTime() <= nowOneMonth &&
                 expiration_date.getTime() >= now) {
               title = (results[k].name != null ? results[k].name : results[k].realname+' '+results[k].realsurname)

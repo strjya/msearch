@@ -17,6 +17,8 @@ module.exports = (bot, message) => {
           key = generateKey()
         }
       })
+      bot.replyPrivateDelayed(message,auth)
+
 //      if (auth !== false)
       connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, res) {
         bot.replyPrivateDelayed(message,JSON.stringify(res))
