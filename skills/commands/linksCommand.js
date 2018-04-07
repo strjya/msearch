@@ -10,19 +10,14 @@ module.exports = (bot, message) => {
       // connect to your database
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
-        bot.replyPrivateDelayed(message,"vjvjfj")
-        bot.replyPrivateDelayed(message,results.length)
-        bot.replyPrivateDelayed(message,JSON.stringify(results))
         bot.replyPrivateDelayed(message,"aaa")
-        var auth
-        var key
         if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
           bot.replyPrivateDelayed(message,"bbb")
-          auth = results[0].status
-          key = generateKey()
-          //connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'");
+          var auth = results[0].status
+          var key = generateKey()
+          let boh = connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'");
           bot.replyPrivateDelayed(message,"ccc")
-        } else auth = false
+        } else var auth = false
         bot.replyPrivateDelayed(message,"ddd")
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,"eee")
