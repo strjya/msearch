@@ -17,7 +17,7 @@ module.exports = (bot, message) => {
       bot.replyPrivateDelayed(message, r[0])
       for (k in r)
       bot.replyPrivateDelayed(message, k)
-      if (results.length > 0) {
+      /*if (results.length > 0) {
         if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
           auth = results[0].status
           key = generateKey();
@@ -28,7 +28,7 @@ module.exports = (bot, message) => {
       else auth = false;
       bot.replyPrivateDelayed(message, "pronto per messaggio")
       var response = createMessage(auth, key);
-      bot.replyPrivateDelayed(message,response)
+      bot.replyPrivateDelayed(message,response)*/
       connection.end()
 
     function createMessage(auth, key) {
