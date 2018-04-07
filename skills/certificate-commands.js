@@ -22,18 +22,18 @@ module.exports = function(controller) {
         // connect to your database
         connection.connect()
         connection.query("SELECT certificate_expiration, name, realname, realsurname, status, clevel, slackid FROM people", function (err, results){
-        var expired = '';
-        var expiring = '';
-        var okCounter = 0;
-        var koCounter = 0;
-        var sosoCounter = 0;
-        var your = ''
-        var auth = true;
-        for (k in results) {
+          var expired = '';
+          var expiring = '';
+          var okCounter = 0;
+          var koCounter = 0;
+          var sosoCounter = 0;
+          var your = ''
+          var auth = true;
+          for (k in results) {
           var expiration_date = new Date(results[k].certificate_expiration);
           // check now to speed up
           if (message.user === results[k].slackid) {
-            your = results[k].expiration_date
+            your = results[k].certificate_expiration
             if (results[k].clevel == 0) auth = false;
           }
           var now = new Date();
@@ -63,7 +63,7 @@ module.exports = function(controller) {
           else
             attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your}]
           let response = createMessage(attachments);
-          bot.replyPrivate(message, response)
+          bot.reply(message, response)
         })
         connection.end();
 
