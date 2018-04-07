@@ -27,11 +27,15 @@ module.exports = function(controller) {
         var okCounter = 0;
         var koCounter = 0;
         var sosoCounter = 0;
+        var your = ''
         var auth = true;
         for (k in results) {
           var expiration_date = new Date(results[k].certificate_expiration);
           // check now to speed up
-          if (message.user === results[k].slackid && results[k].clevel == 0) auth = false;
+          if (message.user === results[k].slackid) {
+            your = results[k].expiration_date
+            if (results[k].clevel == 0) auth = false;
+          }
           var now = new Date();
           var nowOneMonth = now.setMonth(now.getMonth()+1);
           now = new Date();
@@ -52,11 +56,14 @@ module.exports = function(controller) {
           }
         }
           if (auth)
-            attachments = [{title: "Scaduti: "+koCounter, color: '#990000', text: expired},{title: "Scadono entro un mese: "+sosoCounter, color: '#FFFF00', text: expiring}, {title: "Validi: "+okCounter, color: '#00FF00'}];
+            attachments = [{title: "Scaduti: "+koCounter, color: '#990000', text: expired},
+                            {title: "Scadono entro un mese: "+sosoCounter, color: '#FFFF00', text: expiring},
+                            {title: "Validi: "+okCounter, color: '#00FF00'},
+                            {color: '#000000', text: 'PS: il tuo certificato scade il '+your}];
           else
-            attachments = [{title: "Mi dispiace", color: '#777777', text: 'Non disponete del livello di autorizzazione necessario per poter avere queste informazioni.'}]
+            attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your}]
           let response = createMessage(attachments);
-          bot.reply(message, response)
+          bot.replyPrivate(message, response)
         })
         connection.end();
 
@@ -65,8 +72,7 @@ module.exports = function(controller) {
 
   function createMessage(attachments) {
     let message = {
-      link_names: true,
-      response_type: 'ephemeral',
+      text: "Ecco le informazioni sui certificti che avete richiesto."
       attachments: attachments
     }
     return message;
