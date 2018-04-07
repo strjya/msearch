@@ -11,9 +11,9 @@ module.exports = (bot, message) => {
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
         bot.replyPrivateDelayed(message,"vjvjfj")
-        bot.replyPrivateDelayed(message,results)
+        bot.replyPrivateDelayed(message,results.length)
         bot.replyPrivateDelayed(message,JSON.stringify(results))
-        if (results.length > 0) {
+        /*if (results.length > 0) {
           bot.replyPrivateDelayed(message,"aaa")
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             bot.replyPrivateDelayed(message,"bbb")
@@ -28,7 +28,7 @@ module.exports = (bot, message) => {
         bot.replyPrivateDelayed(message,"ddd")
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,"eee")
-        bot.replyPrivateDelayed(message,response)
+        bot.replyPrivateDelayed(message,response)*/
       })
 
       connection.end();
