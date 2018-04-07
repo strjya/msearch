@@ -72,7 +72,7 @@ module.exports = function(controller) {
 
   function createMessage(attachments) {
     let message = {
-      text: "Ecco le informazioni sui certificti che avete richiesto."
+      text: "Ecco le informazioni sui certificti che avete richiesto.",
       attachments: attachments
     }
     return message;
