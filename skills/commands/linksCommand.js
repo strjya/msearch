@@ -11,7 +11,7 @@ module.exports = (bot, message) => {
       connection.connect()
       bot.replyPrivateDelayed(message, "connesso")
       try {
-      r = connection.query('SELECT status, course FROM people WHERE slackid = '+message.user)
+      var r = connection.query('SELECT status, course FROM people WHERE slackid = '+message.user)
     } catch (err) {bot.replyPrivateDelayed(message, err)}
       bot.replyPrivateDelayed(message, JSON.stringify(r))
       bot.replyPrivateDelayed(message, r[0])
