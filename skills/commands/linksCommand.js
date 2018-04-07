@@ -11,7 +11,7 @@ module.exports = (bot, message) => {
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
         bot.replyPrivateDelayed(message,"vjvjfj")
-        bot.replyPrivateDelayed(message,results.length)
+        bot.replyPrivateDelayed(message,(results[0]!=undefined))
         bot.replyPrivateDelayed(message,JSON.stringify(results))
         /*if (results.length > 0) {
           bot.replyPrivateDelayed(message,"aaa")
