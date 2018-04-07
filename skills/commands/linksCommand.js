@@ -10,7 +10,7 @@ module.exports = (bot, message) => {
       // connect to your database
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
-        bot.replyPrivateDelayed(message,"vjvjfj")
+        bot.replyPrivateDelayed(message,results[0].status)
         /*if (results.length > 0) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             auth = results[0].status
