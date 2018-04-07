@@ -9,11 +9,10 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
-      connection.query('SELECT * FROM people', function(error, results, fields) {
-        bot.replyPrivateDelayed(message, "yeah")
+      connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function(error, results, fields) {
         if (results.length > 0) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
-            auth = status;
+            auth = results[0].status
             key = generateKey();
             connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+message.user);
           } else
