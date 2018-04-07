@@ -9,8 +9,9 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
-      try {
+      bot.replyPrivateDelayed(message, "connesso")
       connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function(error, results, fields) {
+        bot.replyPrivateDelayed(message, "query fatta")
         if (results.length > 0) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
             auth = results[0].status
@@ -20,11 +21,11 @@ module.exports = (bot, message) => {
             auth = false;
         }
         else auth = false;
+        bot.replyPrivateDelayed(message, "pronto per messaggio")
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,response)
       })
       connection.end()
-    } catch (err) {        bot.replyPrivateDelayed(message,err)}
 
     function createMessage(auth, key) {
       switch (auth) {
