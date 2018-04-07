@@ -9,6 +9,7 @@ module.exports = (bot, message) => {
                 })
       // connect to your database
       connection.connect()
+      try {
       connection.query('SELECT status, course FROM people WHERE slackid = '+message.user, function(error, results, fields) {
         if (results.length > 0) {
           if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
@@ -17,13 +18,13 @@ module.exports = (bot, message) => {
             connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = "+message.user);
           } else
             auth = false;
-
         }
         else auth = false;
         var response = createMessage(auth, key);
         bot.replyPrivateDelayed(message,response)
       })
       connection.end()
+    } catch (err) {        bot.replyPrivateDelayed(message,err)}
 
     function createMessage(auth, key) {
       switch (auth) {
