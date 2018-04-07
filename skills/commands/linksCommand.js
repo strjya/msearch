@@ -11,17 +11,16 @@ module.exports = (bot, message) => {
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
         bot.replyPrivateDelayed(message,"aaa")
+        var auth = false
         if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
           bot.replyPrivateDelayed(message,"bbb")
-          var auth = results[0].status
+          auth = results[0].status
           var key = generateKey()
-          let boh = connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'");
-          bot.replyPrivateDelayed(message,"ccc")
-        } else var auth = false
-        bot.replyPrivateDelayed(message,"ddd")
-        var response = createMessage(auth, key);
-        bot.replyPrivateDelayed(message,"eee")
-        bot.replyPrivateDelayed(message,response)
+          connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, results) {
+            let response = createMessage(auth, key);
+            bot.replyPrivateDelayed(message,response)
+          });
+        }
       })
 
       connection.end();
