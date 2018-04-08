@@ -9,12 +9,12 @@ module.exports = (bot, message, database) => {
         if (results[0].status !== 'Fallen' && results[0].status !== 'Rifiutato' && results[0].course === 'Adulti') {
           var auth = results[0].status
           var key = generateKey()
-          /*database.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, res) {
+          database.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(err, res) {
             //let response = createMessage(auth, key);
             //bot.replyPrivateDelayed(message,response)
             bot.replyPrivateDelayed(message, "andata")
             database.end();
-          })*/
+          })
         } else database.end();
       })
     } catch (err) {bot.replyPrivateDelayed(message,err.message)}
