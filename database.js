@@ -6,6 +6,5 @@ var database = mysql.createConnection({
               host: 'sword.academy',
               database: 'Sql1001475_3'
             })
-    }
 
 module.exports = database
