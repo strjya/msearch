@@ -8,20 +8,13 @@ In these examples, Botkit is configured to listen for certain phrases, and then
 respond immediately with a single line response.
 
 */
-var mysql = require('mysql');
 var wordfilter = require('wordfilter')
 
-module.exports = function(controller) {
+module.exports = function(controller, database) {
     controller.hears(['certificat.'], 'direct_message,direct_mention', function(bot, message) {
-      var connection = mysql.createConnection({
-                    user: 'root',
-                    password: 'ThisIsSAAMComo!',
-                    host: 'sword.academy',
-                    database: 'Sql1001475_3'
-                  })
         // connect to your database
-        connection.connect()
-        connection.query("SELECT certificate_expiration, name, realname, realsurname, status, clevel, slackid FROM people", function (err, results){
+        database.connect()
+        database.query("SELECT certificate_expiration, name, realname, realsurname, status, clevel, slackid FROM people", function (err, results){
           var expired = '';
           var expiring = '';
           var okCounter = 0;
@@ -64,8 +57,9 @@ module.exports = function(controller) {
             attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
           let response = createMessage(attachments);
           bot.reply(message, response)
+          database.end();
         })
-        connection.end();
+
 
 
     });
