@@ -102,11 +102,11 @@ var webserver = require(__dirname + '/components/express_webserver.js')(controll
   // Send an onboarding message when a new team joins
   require(__dirname + '/components/onboarding.js')(controller);
 
-  var mysql = require('./database.js');
+  var database = require('./database.js');
 
   var normalizedPath = require("path").join(__dirname, "skills");
   require("fs").readdirSync(normalizedPath).forEach(function(file) {
-    if (file !== 'commands') require("./skills/" + file)(controller, mysql.database);
+    if (file !== 'commands') require("./skills/" + file)(controller, database);
   });
 
 
