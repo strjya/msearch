@@ -20,13 +20,13 @@ module.exports = function(controller, database) {
           var okCounter = 0;
           var koCounter = 0;
           var sosoCounter = 0;
-          var your = ''
+          var your = null
           var auth = true;
           for (k in results) {
           var expiration_date = new Date(results[k].certificate_expiration);
           // check now to speed up
           if (message.user === results[k].slackid) {
-            your = results[k].certificate_expiration
+            your = new Date(results[k].certificate_expiration)
             if (results[k].clevel == 0) auth = false;
           }
           var now = new Date();
