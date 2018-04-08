@@ -1,6 +1,8 @@
 
 module.exports = (bot, message, connection) => {
       // connect to your database
+      bot.replyPrivateDelayed(message, "connecting")
+      try {
       connection.connect();
       bot.replyPrivateDelayed(message, "connected")
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
@@ -8,12 +10,14 @@ module.exports = (bot, message, connection) => {
           var auth = results[0].status
           var key = generateKey()
           connection.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, res) {
-            let response = createMessage(auth, key);
-            bot.replyPrivateDelayed(message,response)
+            //let response = createMessage(auth, key);
+            //bot.replyPrivateDelayed(message,response)
+            bot.replyPrivateDelayed(message, "andata")
             connection.end();
           })
         } else connection.end();
       })
+    } catch (err) {bot.replyPrivateDelayed(message,err.message)}
 
 
 
