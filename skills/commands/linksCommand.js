@@ -1,12 +1,5 @@
-var mysql = require('mysql');
 
-module.exports = (bot, message) => {
-    var connection = mysql.createConnection({
-                  user: 'root',
-                  password: 'ThisIsSAAMComo!',
-                  host: 'sword.academy',
-                  database: 'Sql1001475_3'
-                })
+module.exports = (bot, message, connection) => {
       // connect to your database
       connection.connect();
       connection.query("SELECT status, course FROM people WHERE slackid = '"+message.user+"'", function(error, results) {
@@ -17,11 +10,12 @@ module.exports = (bot, message) => {
             bot.replyPrivateDelayed(message,JSON.stringify(res))
             let response = createMessage(auth, key);
             bot.replyPrivateDelayed(message,response)
+            connection.end();
           })
-        }
+        } else connection.end();
       })
 
-      connection.end();
+
 
     function createMessage(auth, key) {
       switch (auth) {
