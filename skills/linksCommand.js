@@ -1,6 +1,6 @@
 
 module.exports = function(controller, database) {
-    controller.hears(['links', 'link', 'utility', 'utili', 'trascri(.*)', 'access.', 'people'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['links', 'link', 'utility', 'utili', 'trascri(.*)', 'access.', 'people'], 'direct_message,direct_mention,mention', function(bot, message) {
       // connect to your database
       var key = generateKey()
       database.connect();
@@ -14,7 +14,7 @@ module.exports = function(controller, database) {
           })
         } else database.end();
       })
-
+    })
 
 
     function createMessage(auth, key) {
@@ -413,4 +413,3 @@ module.exports = function(controller, database) {
     }
 
 }
-)}
