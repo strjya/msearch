@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-var databse = mysql.createConnection({
+var database = mysql.createConnection({
               user: 'root',
               password: 'ThisIsSAAMComo!',
               host: 'sword.academy',
