@@ -1,7 +1,7 @@
 
 module.exports = (bot, message, connection) => {
       // connect to your database
-      bot.replyPrivateDelayed(message, "connecting")
+      bot.replyPrivateDelayed(message, JSON.stringify(connection))
       try {
       connection.connect();
       bot.replyPrivateDelayed(message, "connected")
