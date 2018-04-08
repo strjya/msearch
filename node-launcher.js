@@ -106,7 +106,7 @@ var webserver = require(__dirname + '/components/express_webserver.js')(controll
 
   var normalizedPath = require("path").join(__dirname, "skills");
   require("fs").readdirSync(normalizedPath).forEach(function(file) {
-    if (file !== 'commands') require("./skills/" + file)(controller, database);
+    require("./skills/" + file)(controller, database);
   });
 
 

@@ -1,12 +1,7 @@
-var links = require('./commands/linksCommand');
 
 module.exports = function(controller, database) {
   controller.on('slash_command',function(bot,message) {
       switch (message.command) {
-        case '/prova':
-          bot.replyPrivate(message, "Solo un momento...")
-          links(bot, message, database)
-          break
         default:
           bot.replyPrivate(message,'Chiedo venia, sembra che questo comando esuli dalle mie capacità attuali')
 

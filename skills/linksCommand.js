@@ -1,5 +1,6 @@
 
-module.exports = (bot, message, database) => {
+module.exports = function(controller, database) {
+    controller.hears(['links', 'link', 'utility', 'utili', 'trascri(.*)', 'access.', 'people'], 'direct_message,direct_mention', function(bot, message) {
       // connect to your database
       var key = generateKey()
       database.connect();
@@ -22,45 +23,25 @@ module.exports = (bot, message, database) => {
           var message = {
             attachments: [
               {
-                title: 'Mail',
-                title_link: 'http://mail.sword.academy',
-                color: '#990000',
+                title: 'Utility',
+                title_link: 'http://sword.academy/utility?key='+key,
+                color: '#000000',
               },
               {
-                title: 'Calendar',
-                title_link: 'http://calendar.sword.academy',
-                color: '#990000',
+                title: 'Trascrizioni',
+                title_link: 'http://sword.academy/transcriptions?key='+key,
+                color: '#000000',
               },
               {
-                title: 'Drive Base',
-                title_link: 'https://drive.google.com/drive/folders/0B_Htmk-DaHJ2cDdCTkhubUZyNkk?usp=sharing',
-                color: '#990000',
+                title: 'People',
+                title_link: 'http://sword.academy/people/index.html?key='+key,
+                color: '#000000',
               }]
           }
           break
           case 'Avanzato':
           var message = {
             attachments: [
-              {
-                title: 'Mail',
-                title_link: 'http://mail.sword.academy',
-                color: '#990000',
-              },
-              {
-                title: 'Calendar',
-                title_link: 'http://calendar.sword.academy',
-                color: '#990000',
-              },
-              {
-                title: 'Drive Primo anno',
-                title_link: 'https://drive.google.com/drive/folders/0B_Htmk-DaHJ2cDdCTkhubUZyNkk?usp=sharing',
-                color: '#990000',
-              },
-              {
-                title: 'Drive',
-                title_link: 'https://drive.google.com/drive/folders/0B_Htmk-DaHJ2bXZjekpkQUh1NXM?usp=sharing',
-                color: '#990000',
-              },
               {
                 title: 'Utility',
                 title_link: 'http://sword.academy/utility?key='+key,
@@ -432,3 +413,4 @@ module.exports = (bot, message, database) => {
     }
 
 }
+)}
