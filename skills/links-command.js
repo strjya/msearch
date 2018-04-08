@@ -9,8 +9,8 @@ module.exports = function(controller, database) {
           var auth = results[0].status
           database.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, res) {
             let response = createMessage(auth, key);
+            bot.reply(message,response)
             bot.replyPrivateDelayed(message,"something")
-            bot.replyPrivateDelayed(message,response)
             database.end();
           })
         } else database.end();
