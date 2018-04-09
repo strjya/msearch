@@ -10,7 +10,6 @@ module.exports = function(controller, database) {
           database.query("UPDATE people SET accesskey = '"+key+"' , expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE slackid = '"+message.user+"'", function(err, res) {
             let response = createMessage(auth, key);
             bot.reply(message,response)
-            bot.replyPrivateDelayed(message,"something")
             database.end();
           })
         } else database.end();
@@ -19,48 +18,35 @@ module.exports = function(controller, database) {
 
 
     function createMessage(auth, key) {
+      let defMessage = {
+        attachments: [
+          {
+            title: 'Utility',
+            title_link: 'http://sword.academy/utility?key='+key,
+            color: '#000000',
+          },
+          {
+            title: 'Trascrizioni',
+            title_link: 'http://sword.academy/transcriptions?key='+key,
+            color: '#000000',
+          },
+          {
+            title: 'People',
+            title_link: 'http://sword.academy/people/index.html?key='+key,
+            color: '#000000',
+          }]
+      }
       switch (auth) {
         case 'Base':
-          var message = {
-            attachments: [
-              {
-                title: 'Utility',
-                title_link: 'http://sword.academy/utility?key='+key,
-                color: '#000000',
-              },
-              {
-                title: 'Trascrizioni',
-                title_link: 'http://sword.academy/transcriptions?key='+key,
-                color: '#000000',
-              },
-              {
-                title: 'People',
-                title_link: 'http://sword.academy/people/index.html?key='+key,
-                color: '#000000',
-              }]
-          }
+          var message = defMessage
           break
-          case 'Avanzato':
-          var message = {
-            attachments: [
-              {
-                title: 'Utility',
-                title_link: 'http://sword.academy/utility?key='+key,
-                color: '#000000',
-              },
-              {
-                title: 'Trascrizioni',
-                title_link: 'http://sword.academy/transcriptions?key='+key,
-                color: '#000000',
-              },
-              {
-                title: 'People',
-                title_link: 'http://sword.academy/people/index.html?key='+key,
-                color: '#000000',
-              }]
-          }
+        case 'Avanzato':
+          var message = defMessage
           break
-          default:
+        case 'C-level':
+          var message = defMessage
+          break
+        default:
           var message = {
             attachments: [
               {

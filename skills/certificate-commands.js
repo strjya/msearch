@@ -27,7 +27,7 @@ module.exports = function(controller, database) {
           // check now to speed up
           if (message.user === results[k].slackid) {
             your = new Date(results[k].certificate_expiration)
-            if (results[k].clevel == 0) auth = false;
+            if (results[k].status !== 'C-level') auth = false;
           }
           var now = new Date();
           var nowOneMonth = now.setMonth(now.getMonth()+1);
