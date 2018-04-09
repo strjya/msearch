@@ -15,7 +15,7 @@ module.exports = function(controller) {
 
 
     controller.hears(['tass.'], 'direct_message,direct_mention,mention', function(bot, message) {
-          bot.reply(message,"Ammiro il vostro ardimento, ma se permettete io preferirei che colui-che-non-dev'essere-nominato restasse tale")
+          bot.reply(message,"Ammiro il vostro ardimento, ma se permettete io preferirei che colui-che-non-dev'essere-nominato restasse tale.")
     });
 
     controller.hears(['colp.', 'dritto', 'fendente', 'roverso'], 'direct_message,direct_mention,mention', function(bot, message) {
@@ -30,7 +30,7 @@ module.exports = function(controller) {
         bot.reply(message, "Fossi in voi chiederei direttamente ad <@Avalanche>. Non vorrei trovare pezzi di me stesso sparsi per tutta la palestra.")
     });
 
-    controller.hears(['Federico', 'Stria', 'first lady', 'regina', 'presidente'], 'direct_message,direct_mention,mention', function(bot, message) {
+    controller.hears(['Federico', 'Stria', 'first lady', 'regina', 'presidente', 'U1Z1FCZMF'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, "Mi dispiace <@"+message.user+">, non disponete del livello di autorizzazione necessario ad accedere ad informazioni classificate. E sì, temo che tutte le informazioni su <@stria> sono classificate. Si sono classificate da sole per paura di quello che sarebbe successo se l'informazione sbagliata fosse diventata di dominiio pubblico...")
     });
 
@@ -51,7 +51,10 @@ module.exports = function(controller) {
     });
 
     controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot, message) {
+      if (message.user !== 'U1Z1FCZMF')
         bot.reply(message, "Chiedo venia, <@"+message.user+">, temo che <@stria> non mi abbia ancora reso in grado di comprendere questa richiesta.")
+      else
+        bot.reply(message, "Chiedo venia, <@"+message.user+">, temo di aver bisogno di un vostro intervento per comprendere questa richiesta.")
     });
 
 };
