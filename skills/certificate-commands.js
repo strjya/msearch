@@ -20,8 +20,9 @@ module.exports = function(controller, database) {
           var okCounter = 0;
           var koCounter = 0;
           var sosoCounter = 0;
-          var your = null
+          var your = ''
           var auth = true;
+
           for (k in results) {
           var expiration_date = new Date(results[k].certificate_expiration);
           // check now to speed up
