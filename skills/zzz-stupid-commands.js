@@ -26,12 +26,12 @@ module.exports = function(controller) {
         bot.reply(message, "Suppongo che anche le punte funzionino. Dopotutto, è difficile fare un tramazzone con una lancia...")
     });
 
-    controller.hears(['Federico', 'Stria', 'first lady', 'regina', 'presidente'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, "Mi dispiace <@"+message.user+">, non disponete del livello di autorizzazione necessario ad accedere ad informazioni classificate. E sì, temo che tutte le informazioni su <@stria> sono classificate. Si sono classificate da sole per paura di quello che sarebbe successo se l'informazione sbagliata fosse diventata di dominiio pubblico...")
-    });
-
     controller.hears(['Avalanche', 'Gabriele', 'vice presidente', 'vice', 'Lanche', 'Vitto', 'third lady'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, "Fossi in voi chiederei direttamente ad <@Avalanche>. Non vorrei trovare pezzi di me stesso sparsi per tutta la palestra.")
+    });
+
+    controller.hears(['Federico', 'Stria', 'first lady', 'regina', 'presidente'], 'direct_message,direct_mention,mention', function(bot, message) {
+        bot.reply(message, "Mi dispiace <@"+message.user+">, non disponete del livello di autorizzazione necessario ad accedere ad informazioni classificate. E sì, temo che tutte le informazioni su <@stria> sono classificate. Si sono classificate da sole per paura di quello che sarebbe successo se l'informazione sbagliata fosse diventata di dominiio pubblico...")
     });
 
     controller.hears(['Betty', 'Betta', 'summerchild', 'second lady'], 'direct_message,direct_mention,mention', function(bot, message) {
