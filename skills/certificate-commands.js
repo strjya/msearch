@@ -14,13 +14,13 @@ module.exports = function(controller, database) {
     controller.hears(['certificat.'], 'direct_message,direct_mention', function(bot, message) {
         // connect to your database
         database.connect()
-        database.query("SELECT certificate_expiration, name, realname, realsurname, status, clevel, slackid FROM people", function (err, results){
+        database.query("SELECT certificate_expiration, name, realname, realsurname, status, slackid FROM people", function (err, results){
           var expired = '';
           var expiring = '';
           var okCounter = 0;
           var koCounter = 0;
           var sosoCounter = 0;
-          var your = ''
+          var your = null
           var auth = true;
 
           for (k in results) {
