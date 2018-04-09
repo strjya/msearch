@@ -11,7 +11,7 @@ respond immediately with a single line response.
 var wordfilter = require('wordfilter')
 
 module.exports = function(controller, database) {
-    controller.hears(['certificat.'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['certificati'], 'direct_message,direct_mention,mention', function(bot, message) {
         // connect to your database
         database.connect()
         database.query("SELECT certificate_expiration, name, realname, realsurname, status, slackid FROM people", function (err, results){
@@ -52,11 +52,13 @@ module.exports = function(controller, database) {
           if (auth)
             attachments = [{title: "Scaduti: "+koCounter, color: '#990000', text: expired},
                             {title: "Scadono entro un mese: "+sosoCounter, color: '#FFFF00', text: expiring},
-                            {title: "Validi: "+okCounter, color: '#00FF00'},
-                            {color: '#000000', text: 'PS: il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}];
+                            {title: "Validi: "+okCounter, color: '#00FF00'}];
           else
             attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
-          let response = createMessage(attachments);
+          let response = {
+            text: "La situazione certificati al momento è la seguente:",
+            attachments: attachments
+          }
           bot.reply(message, response)
           database.end();
         })
@@ -65,12 +67,22 @@ module.exports = function(controller, database) {
 
     });
 
-  function createMessage(attachments) {
-    let message = {
-      text: "Ecco le informazioni sui certificti che avete richiesto.",
-      attachments: attachments
-    }
-    return message;
-  }
+    controller.hears(['certificato'], 'direct_message,direct_mention,mention', function(bot, message) {
+      // connect to your database
+      database.connect()
+      database.query("SELECT certificate_expiration, name, realname, realsurname, status, slackid FROM people", function (err, results){
+        var your = null
+
+        for (k in results) {
+          if (message.user === results[k].slackid)
+            your = new Date(results[k].certificate_expiration)
+        }
+          attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
+        let response = {attachments: attachments}
+        bot.reply(message, response)
+        database.end();
+      })
+
+            });
 
 };
