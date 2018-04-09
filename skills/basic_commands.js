@@ -75,7 +75,7 @@ module.exports = function(controller) {
                           "text": "Qui trovate le cartelle condivise di tutti i corsi, che contengono dispense e appunti. Se cercate altri file condivisi, vi consiglio di provare dal vostro drive.",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
+                              "fallback": "Chiedo venia, <@stria>, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -105,7 +105,7 @@ module.exports = function(controller) {
                           "text": "Ecco i documenti della Sword Academy. Il vostro interesse nell'associazione è encomiabile!",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
+                              "fallback": "Chiedo venia, <@stria>, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -133,7 +133,7 @@ module.exports = function(controller) {
                           "text": "Qui trovate tutte le foto di sala. Ah, quanti bei ricordi!",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
+                              "fallback": "Chiedo venia, <@stria>, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
@@ -151,7 +151,7 @@ module.exports = function(controller) {
                           "text": "Da qui potete accedere al calendario dell'Accademia. Non dimenticate che potete trovare informazioni sugli eventi su #eventi.",
                           "attachments": [
                             {
-                              "fallback": "Chiedo venia, @stria, qualcosa è andato storto.",
+                              "fallback": "Chiedo venia, <@stria>, qualcosa è andato storto.",
                               "color" : "#000000",
                               "actions": [
                                 {
