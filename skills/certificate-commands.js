@@ -54,7 +54,7 @@ module.exports = function(controller, database) {
                             {title: "Scadono entro un mese: "+sosoCounter, color: '#FFFF00', text: expiring},
                             {title: "Validi: "+okCounter, color: '#00FF00'}];
           else
-            attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
+            attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getFullYear()}]
           let response = {
             text: "La situazione certificati al momento è la seguente:",
             attachments: attachments
@@ -76,7 +76,7 @@ module.exports = function(controller, database) {
           if (message.user === results[k].slackid)
             your = new Date(results[k].certificate_expiration)
         }
-        let  attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getYear()}]
+        let  attachments = [{color: '#000000', text: 'Il tuo certificato scade il '+your.getDate()+'/'+your.getMonth()+'/'+your.getFullYear()}]
         let response = {attachments: attachments}
         bot.reply(message, response)
         database.end();
