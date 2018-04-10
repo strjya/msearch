@@ -12,7 +12,7 @@ module.exports = function(controller) {
     webserver.use(cookieParser());
     webserver.use(bodyParser.json());
     webserver.use(bodyParser.urlencoded({ extended: true }));
-    webserver.use(express.static(require("path").join(__dirname, '../public')));
+    webserver.use(express.static(require("path").join(__dirname, '../public/website')));
 
     // import express middlewares that are present in /components/express_middleware
 
