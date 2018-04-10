@@ -4,6 +4,6 @@ var path = require('path')
 module.exports = function(webserver, controller) {
 
   webserver.get('/', function(req, res) {
-    return res.sendFile(path.join(__dirname, '../../public', 'index.html'));  });
+    return res.sendFile(path.join(__dirname, '../../public/website', 'index.html'));  });
 
 }
