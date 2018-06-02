@@ -31,10 +31,10 @@ module.exports = function(controller) {
     });
 
     controller.hears(['Federico', 'Stria', 'first lady', 'regina', 'presidente', 'U1Z1FCZMF'], 'direct_message,direct_mention,mention', function(bot, message) {
-        bot.reply(message, "Mi dispiace <@"+message.user+">, non disponete del livello di autorizzazione necessario ad accedere ad informazioni classificate. E sì, temo che tutte le informazioni su <@stria> sono classificate. Si sono classificate da sole per paura di quello che sarebbe successo se l'informazione sbagliata fosse diventata di dominiio pubblico...")
+        bot.reply(message, "Mi dispiace <@"+message.user+">, non disponete del livello di autorizzazione necessario ad accedere ad informazioni classificate. E sì, temo che tutte le informazioni su <@stria> siano classificate. Si sono classificate da sole per paura di quello che sarebbe successo se l'informazione sbagliata fosse diventata di dominiio pubblico...")
     });
 
-    controller.hears(['Betty', 'Betta', 'summerchild', 'second lady'], 'direct_message,direct_mention,mention', function(bot, message) {
+    controller.hears(['Betty', 'Betta', 'summerchild', 'second lady', 'summer', 'ragazza del capo'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, "Mi dispiace <@"+message.user+">, <@stria> ha classificato la maggior parte delle informazioni su <@summerchild>. Ma di sicuro deve avere qualche dote nascosta, se è riuscita ad arrivare così in alto!")
     });
 
@@ -48,6 +48,20 @@ module.exports = function(controller) {
 
     controller.hears(['Marozzo'], 'direct_message,direct_mention,mention', function(bot, message) {
         bot.reply(message, "Intendete il nobile Maestro, o quel branco di sbandati guidati da mentecatti?")
+    });
+
+    controller.hears(['grazie', 'thanks', 'thank you'], 'direct_message,direct_mention,mention', function(bot, message) {
+      let r = Math.floor((Math.random()*3)+1)
+      switch (r) {
+        case 1:
+          bot.reply(message, "Non c'è di che!")
+          break
+        case 2:
+          bot.reply(message, "Sono a vostra disposizione.")
+          break
+        default:
+          bot.reply(message, "Per servirvi")
+      }
     });
 
     controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot, message) {

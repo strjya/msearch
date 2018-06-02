@@ -1,7 +1,18 @@
 {
-  "main.css": "static/css/main.c17080f1.css",
-  "main.css.map": "static/css/main.c17080f1.css.map",
-  "main.js": "static/js/main.ee97c0b9.js",
-  "main.js.map": "static/js/main.ee97c0b9.js.map",
-  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg"
+  "main.css": "static/css/main.da3b2355.css",
+  "main.css.map": "static/css/main.da3b2355.css.map",
+  "main.js": "static/js/main.97cb896a.js",
+  "main.js.map": "static/js/main.97cb896a.js.map",
+  "static/media/MSearch_logo.png": "static/media/MSearch_logo.62749df3.png",
+  "static/media/SA_official.png": "static/media/SA_official.eb102035.png",
+  "static/media/darkwood.jpg": "static/media/darkwood.02842f95.jpg",
+  "static/media/esperienzaPratica.png": "static/media/esperienzaPratica.be6073f4.png",
+  "static/media/jtds.png": "static/media/jtds.891b10c4.png",
+  "static/media/libretto.png": "static/media/libretto.d982acb3.png",
+  "static/media/lucca2012_annotata.png": "static/media/lucca2012_annotata.f922019c.png",
+  "static/media/olimpica.png": "static/media/olimpica.4fa40c72.png",
+  "static/media/primo_anno.png": "static/media/primo_anno.e1769231.png",
+  "static/media/rinascimentale.png": "static/media/rinascimentale.b590bb3c.png",
+  "static/media/ruven.png": "static/media/ruven.a9f4cac5.png",
+  "static/media/sperimentazione.png": "static/media/sperimentazione.5ddeb6ab.png"
 }
