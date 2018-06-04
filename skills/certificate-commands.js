@@ -13,7 +13,6 @@ var wordfilter = require('wordfilter')
 module.exports = function(controller, database) {
     controller.hears(['certificati'], 'direct_message,direct_mention,mention', function(bot, message) {
         // connect to your database
-        database.connect()
         database.query("SELECT certificate_expiration, name, realname, realsurname, status, slackid FROM people", function (err, results){
           var expired = '';
           var expiring = '';
@@ -60,7 +59,6 @@ module.exports = function(controller, database) {
             attachments: attachments
           }
           bot.reply(message, response)
-          database.end();
         })
 
 
