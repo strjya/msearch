@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 var database = mysql.createPool({
               connectionLimit : 10,
-              user: 'root',
+              user: 'stria@swordacademy-db',
               password: 'ThisIsSAAMComo!',
-              host: '52.187.131.185',
-              database: 'Sql1001475_3'
+              host: 'swordacademy-db.mysql.database.azure.com',
+              database: 'msearch'
             })
 
 module.exports = database

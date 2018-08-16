@@ -6,13 +6,16 @@ var debug = require('debug')('botkit:webserver');
 var http = require('http');
 var hbs = require('express-hbs');
 
+var apiRouter = require('../msearch/api');
+var indexRouter = require('./index')
+
 module.exports = function(controller) {
 
     var webserver = express();
     webserver.use(cookieParser());
     webserver.use(bodyParser.json());
     webserver.use(bodyParser.urlencoded({ extended: true }));
-    webserver.use(express.static(require("path").join(__dirname, '../public/website')));
+    webserver.use('/',express.static(require("path").join(__dirname, '../public/website')));
 
     // import express middlewares that are present in /components/express_middleware
 
@@ -22,6 +25,11 @@ module.exports = function(controller) {
         console.log('Express webserver configured and listening at http://localhost:' + process.env.PORT || 3000);
 
     });
+
+    webserver.use('/api', apiRouter);
+    webserver.use('/', indexRouter);
+    webserver.use('/bambini', indexRouter);
+    webserver.use('/corsi', indexRouter);
 
     // import all the pre-defined routes that are present in /components/routes
     var normalizedPath = require("path").join(__dirname, "routes");
