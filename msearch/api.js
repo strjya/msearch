@@ -33,7 +33,7 @@ router.post('/getRawData', function(req, res) {
 
   let treatisesCondition = "AND ("
   for (t of treatises)
-    treatisesCondition+= "(treatises.author = '"+t.author+"' AND treatises.title = '"+t.title+"' AND treatises.year = "+t.year+") OR "
+    treatisesCondition+= "(treatises.author = '"+t.author+"' AND treatises.title = '"+t.title.replace(/'/g,'\\\'')+"' AND treatises.year = "+t.year+") OR "
   treatisesCondition+= "0) "
   let booksCondition = (books.length > 0 ? " AND books.number IN "+JSON.stringify(books).replace('[','(').replace(']',')'): "")
   let chaptersCondition = (chapters.length > 0 ? " AND chapters.number IN "+JSON.stringify(chapters).replace('[','(').replace(']',')'): "")

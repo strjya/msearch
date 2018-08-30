@@ -8,6 +8,7 @@ var hbs = require('express-hbs');
 
 var apiRouter = require('../msearch/api');
 var indexRouter = require('./index')
+var msearchRouter = require('../msearch/router')
 
 module.exports = function(controller) {
 
@@ -15,18 +16,19 @@ module.exports = function(controller) {
     webserver.use(cookieParser());
     webserver.use(bodyParser.json());
     webserver.use(bodyParser.urlencoded({ extended: true }));
-    webserver.use('/',express.static(require("path").join(__dirname, '../public/website')));
+    webserver.use('/',express.static(require("path").join(__dirname, '../public')));
+
 
     // import express middlewares that are present in /components/express_middleware
 
     var server = http.createServer(webserver);
     server.listen(process.env.PORT || 3000, null, function() {
-
         console.log('Express webserver configured and listening at http://localhost:' + process.env.PORT || 3000);
 
     });
 
     webserver.use('/api', apiRouter);
+    webserver.use('/msearch', msearchRouter);
     webserver.use('/', indexRouter);
     webserver.use('/bambini', indexRouter);
     webserver.use('/corsi', indexRouter);
