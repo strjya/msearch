@@ -46,9 +46,9 @@ module.exports = function(controller) {
     controller.hears(['^ciao(.*)','^buongiorn(.*)','^buon giorn(.*)','^buonaser(.*)','^buona ser(.*)','^ave (.*)', '^ave', '^ave!'], 'direct_message,direct_mention,mention', function(bot, message) {
         let hours = new Date().getHours()
         if (hours < 3 || hours > 18)
-          bot.reply(message,"Buonasera, <@"+message.channel+">" )
+          bot.reply(message,"Buonasera, <@"+message.user+">" )
         else
-          bot.reply(message,"Buongiorno, <@"+message.channel+">" )
+          bot.reply(message,"Buongiorno, <@"+message.user+">" )
     });
 
     controller.hears(['banca','bancari.','coordinate', 'iban', 'pagar', 'pagament' ], 'direct_message,direct_mention,mention', function(bot, message) {
