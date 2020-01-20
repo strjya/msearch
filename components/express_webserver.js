@@ -15,10 +15,7 @@ module.exports = function() {
     webserver.use(cookieParser());
     webserver.use(bodyParser.json());
     webserver.use(bodyParser.urlencoded({ extended: true }));
-    webserver.use('/',express.static(require("path").join(__dirname, '../public')));
-
-
-    // import express middlewares that are present in /components/express_middleware
+    webserver.use('/',express.static(require("path").join(__dirname, '../public/')));
 
     var server = http.createServer(webserver);
     server.listen(process.env.PORT || 3000, null, function() {
@@ -26,14 +23,8 @@ module.exports = function() {
 
     });
 
+    webserver.use('/', msearchRouter);
     webserver.use('/api', apiRouter);
-    webserver.use('/msearch', msearchRouter);
-
-    // import all the pre-defined routes that are present in /components/routes
-    var normalizedPath = require("path").join(__dirname, "routes");
-    require("fs").readdirSync(normalizedPath).forEach(function(file) {
-      require("./routes/" + file)(webserver);
-    });
 
     return webserver;
 
