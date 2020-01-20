@@ -7,10 +7,9 @@ var http = require('http');
 var hbs = require('express-hbs');
 
 var apiRouter = require('../msearch/api');
-var indexRouter = require('./index')
 var msearchRouter = require('../msearch/router')
 
-module.exports = function(controller) {
+module.exports = function() {
 
     var webserver = express();
     webserver.use(cookieParser());
@@ -23,24 +22,18 @@ module.exports = function(controller) {
 
     var server = http.createServer(webserver);
     server.listen(process.env.PORT || 3000, null, function() {
-        console.log('Express webserver configured and listening at http://localhost:' + process.env.PORT || 3000);
+        console.log('Express webserver configured and listening at http://localhost:' + (process.env.PORT || 3000));
 
     });
 
     webserver.use('/api', apiRouter);
     webserver.use('/msearch', msearchRouter);
-    webserver.use('/', indexRouter);
-    webserver.use('/bambini', indexRouter);
-    webserver.use('/corsi', indexRouter);
 
     // import all the pre-defined routes that are present in /components/routes
     var normalizedPath = require("path").join(__dirname, "routes");
     require("fs").readdirSync(normalizedPath).forEach(function(file) {
-      require("./routes/" + file)(webserver, controller);
+      require("./routes/" + file)(webserver);
     });
-
-    controller.webserver = webserver;
-    controller.httpserver = server;
 
     return webserver;
 
