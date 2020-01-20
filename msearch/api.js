@@ -10,7 +10,7 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/getTreatisesList', function(req, res) {
+router.post('/getTreatisesList', function(req, res) {
   //let password = req.body.params.password
   //let user = req.body.params.user.trim().toLowerCase()
   database.query("SELECT author, title, year FROM treatises WHERE available = 1",
