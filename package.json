@@ -14,10 +14,9 @@
     "node-env-file": "^0.1.8",
     "package.json": "^2.0.1",
     "querystring": "^0.2.0",
-    "request": "^2.79.0",
+    "request": "^2.79.0"
   },
   "devDependencies": {},
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "strjya"
 }
