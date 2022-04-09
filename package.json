@@ -10,7 +10,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-hbs": "^1.0.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mysql": "^2.15.0",
     "node-env-file": "^0.1.8",
     "package.json": "^2.0.1",
